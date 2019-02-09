@@ -10,7 +10,7 @@ using namespace std;
 
 int main() {
 	ifstream myFile;
-	int data_entry;
+	int data_entry, source, destination;
 	vector<int> vertices;
 	myFile.open("Graph.txt");
 	int data[4][3];
@@ -39,6 +39,13 @@ int main() {
 		DirectedGraph.add_edge(data[i][0], data[i][1], data[i][2]);
 	}
 	DirectedGraph.to_string();
+
+	cout << "Testing the results" << endl;
+	cout << "Input the starting vertex: ";
+	cin >> source;
+	cout<<"Input the goal: ";
+	cin >> destination;
+	DirectedGraph.dijkstra(source, destination);
 
 	return 0;
 }
