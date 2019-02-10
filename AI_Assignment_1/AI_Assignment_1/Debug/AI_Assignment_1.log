@@ -1,2 +1,6 @@
-﻿  main.cpp
+﻿  AdjMatrix.cpp
+c:\users\jorge villareal\documents\introduction to ai\directedgraphsearch\ai_assignment_1\ai_assignment_1\adjmatrix.cpp(35): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+c:\users\jorge villareal\documents\introduction to ai\directedgraphsearch\ai_assignment_1\ai_assignment_1\main.cpp(48): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
   AI_Assignment_1.vcxproj -> C:\Users\JORGE VILLAREAL\Documents\Introduction to AI\DirectedGraphSearch\AI_Assignment_1\Debug\AI_Assignment_1.exe

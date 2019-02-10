@@ -29,10 +29,22 @@ void AdjMatrix::print_distance(vector<int> distance, int src, int dest) {
 	cout << endl;
 	cout << "The distance from vertex "<<src<<" to vertex "<<dest<<" is: " << distance[dest] << endl;
 }
+void AdjMatrix::print_path(vector<int> path, int src, int dest) {
+	cout << endl;
+	cout << "The path from vertex " << src << " to vertex " << dest << " is: ";
+	for (int i = 0; i < path.size(); i++) {
+		cout << path[i]<<" ";
+		if (path[i] == dest) {
+			cout << endl;
+			break;
+		}	
+	}
+}
 void AdjMatrix::dijkstra(int src, int dest) {
 	int V = vertices;
 	vector<int> distances(V);
 	vector<bool> set(V);
+	vector<int> path;
 
 	for (int i = 0; i < V; i++) {
 		distances[i] = INT_MAX;
@@ -44,7 +56,7 @@ void AdjMatrix::dijkstra(int src, int dest) {
 		int u = min_distance(distances, set);
 		// Mark the picked vertex as processed 
 		set[u] = true;
-
+		path.push_back(u);
 		// Update dist value of the adjacent vertices of the picked vertex. 
 		for (int v = 0; v < V; v++)
 			if (!set[v] && matrix[u][v] && distances[u] != INT_MAX
@@ -53,6 +65,7 @@ void AdjMatrix::dijkstra(int src, int dest) {
 	}
 	// print the constructed distance array 
 	print_distance(distances, src, dest);
+	print_path(path, src, dest);
 }
 void AdjMatrix::add_edge(int i, int j, int weight) {
 	matrix[i][j] = weight;

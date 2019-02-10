@@ -12,6 +12,7 @@ private:
 public:
 	AdjMatrix(int V);
 	int min_distance(std::vector<int> distance, std::vector<bool> set);
+	void print_path(std::vector<int> path, int src, int dest);
 	void print_distance(std::vector<int> distance, int src, int dest);
 	void dijkstra(int src, int dest);
 	void add_edge(int i, int j, int weight);

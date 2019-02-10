@@ -10,35 +10,44 @@ using namespace std;
 
 int main() {
 	ifstream myFile;
-	int data_entry, source, destination;
+	int data_entry, source, destination, Rows = 0;
 	vector<int> vertices;
 	myFile.open("Graph.txt");
-	int data[4][3];
+	vector<vector<int>> data;//Size of the text file
+	vector<int> rows;
 
 	if (!myFile) {
 		cout << "Couldnt open file"<<endl;
 		exit(1);
 	}
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 3; j++) {
-			myFile >> data_entry;
-			data[i][j] = data_entry;
-			if (j < 2)
+	int j = 0, i = 0;
+	while (myFile >> data_entry) {
+		if (j < 3) {
+			rows.push_back(data_entry);
+			if (j < 2) {
 				vertices.push_back(data_entry);
+				j++;
+			}
+			j++;
+		}
+		else {
+			data.push_back(rows);
+			rows.clear();
+			data[i].push_back(data_entry);
+			i++;
+			j = 0;
 		}
 	}
 	myFile.close();
-
 	sort(vertices.begin(), vertices.end());
 	vertices.erase(unique(vertices.begin(), vertices.end()), vertices.end());
 
 	int V = vertices[vertices.size()-1]+1;
 	AdjMatrix DirectedGraph(V);
-
-	for (int i = 0; i < 4; i++) {	
+	
+	for (int i = 0; i < data.size(); i++) {	
 		DirectedGraph.add_edge(data[i][0], data[i][1], data[i][2]);
 	}
-	DirectedGraph.to_string();
 
 	cout << "Testing the results" << endl;
 	cout << "Input the starting vertex: ";
@@ -46,7 +55,7 @@ int main() {
 	cout<<"Input the goal: ";
 	cin >> destination;
 	DirectedGraph.dijkstra(source, destination);
-
+	
 	return 0;
 }
 
